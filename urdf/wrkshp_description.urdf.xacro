@@ -1,10 +1,26 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <link name="velodyne" />
-<!-- comment! -->
-  <joint name="velodyne_joint" type="fixed" >
+  <link name="velodyne_mount" >
+    <visual>
+      <geometry>
+        <mesh filename="package://wrkshp_description/meshes/VLP16.dae"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="velodyne_mount_joint" type="fixed" >
     <parent link="mid_mount" />
-    <child link="velodyne" />
+    <child link="velodyne_mount" />
     <origin xyz="0 0 0.1" rpy="0 0 0" />
   </joint>
+
+  <link name="velodyne" />
+
+  <joint name="velodyne_joint" type="fixed" >
+    <parent link="velodyne_mount" />
+    <child link="velodyne" />
+    <origin xyz="0 0 0.0378" rpy="0 0 0" />
+  </joint>
+
+
 </robot>
